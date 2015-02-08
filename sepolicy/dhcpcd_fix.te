@@ -1,0 +1,2 @@
+# Fix dhcpcd
+type dhcpcd_fix, domain;

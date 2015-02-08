@@ -1,0 +1,4 @@
+# STE, PS connection control
+type stercd, domain;
+type stercd_exec, exec_type, file_type;
+init_daemon_domain(stercd)

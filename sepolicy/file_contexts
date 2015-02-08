@@ -1,0 +1,45 @@
+# Dev nodes
+/dev/cpu_dma_latency                           u:object_r:device_latency:s0
+/dev/ttyGS0                                            u:object_r:radio_device:s0
+/dev/ttyAMA2   				       u:object_r:console_device:s0
+/dev/radio0                                            u:object_r:fm_radio_device:s0
+/dev/mmcblk0p[5-6]*		              u:object_r:modem_partition_device:s0
+/dev/dbx500_mloader_fw                     u:object_r:radio_device:s0
+/dev/db8500-modem-trace                   u:object_r:radio_device:s0
+/dev/rpc u:object_r:radio_device:s0
+
+# Graphics
+/dev/hwmem u:object_r:graphics_device:s0
+/dev/comp0 u:object_r:graphics_device:s0
+/dev/mali u:object_r:graphics_device:s0
+/dev/b2r2_blt u:object_r:graphics_device:s0
+
+# cg2900
+/dev/cg2900_.* u:object_r:cg9200_device:s0
+/dev/ttyAMA0   u:object_r:cg9200_device:s0
+
+# System binaries
+/system/bin/admsrv u:object_r:admsrv_exec:s0
+/system/bin/chargemon u:object_r:healthd_exec:s0
+/system/bin/copsdaemon u:object_r:copsd_exec:s0
+/system/bin/modem-supervisor u:object_r:modem-supervisor_exec:s0
+/system/bin/cn_server u:object_r:cn_server_exec:s0
+/system/bin/simd u:object_r:simd_exec:s0
+/system/bin/simpbd u:object_r:simpbd_exec:s0
+/system/bin/sms_server u:object_r:sms_server_exec:s0
+/system/bin/at_core u:object_r:atd_exec:s0
+/system/bin/ste_mad u:object_r:mad_exec:s0
+/system/bin/modemcatcher u:object_r:modemcatcher_exec:s0
+/system/bin/psccd u:object_r:psccd_exec:s0
+/system/bin/stercd u:object_r:stercd_exec:s0
+/system/bin/updatemiscta u:object_r:updatemiscta_exec:s0
+/system/bin/suntrold u:object_r:suntrold_exec:s0
+/system/bin/lbsd u:object_r:lbsd_exec:s0
+
+# for wpa
+/dev/rfkill u:object_r:rfkill_device:s0
+
+# Data labeling
+/data/etc/bluetooth_bdaddr u:object_r:bluetooth_data_file:s0
+/data/etc/wlan_macaddr u:object_r:wifi_data_file:s0
+/data/camera(/.*)?  u:object_r:camera_socket:s0

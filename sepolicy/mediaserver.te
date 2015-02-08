@@ -1,0 +1,5 @@
+allow mediaserver camera_prop:property_service set;
+allow mediaserver graphics_device:chr_file { open read write getattr ioctl };
+allow mediaserver admsrv:fd { use };
+allow mediaserver admsrv_tmpfs:file { open getattr read write };
+allow mediaserver admsrv:unix_stream_socket { connectto };

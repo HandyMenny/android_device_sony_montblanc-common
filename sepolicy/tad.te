@@ -1,0 +1,4 @@
+#SEMC: TrimArea Daemon
+type tad, domain;
+type tad_exec, exec_type, file_type;
+init_daemon_domain(tad)

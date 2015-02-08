@@ -1,0 +1,4 @@
+# STE: Modem-supervisor
+type modem-supervisor, domain;
+type modem-supervisor_exec, exec_type, file_type;
+init_daemon_domain(modem-supervisor)

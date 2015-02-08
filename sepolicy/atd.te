@@ -1,0 +1,4 @@
+# STE, AT daemon
+type atd, domain;
+type atd_exec, exec_type, file_type;
+init_daemon_domain(atd)

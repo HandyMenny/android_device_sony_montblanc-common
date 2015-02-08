@@ -339,16 +339,19 @@ on boot
 
 # init shrm net device required for Phonet communication with Modem
 service shrm-netdev /system/bin/ifconfig shrm0 up
+    seclabel u:r:phonet_loader:s0
     class modem-u8500
     oneshot
 
 # init Phonet net device required for Phonet communication with Modem
 service phonet-netdev /system/bin/ifconfig upnlink0 up
+    seclabel u:r:phonet_loader:s0
     class main
     oneshot
 
 #STE: Start the Modem Storage Agent (MSA) service
 service modem /system/bin/sh /system/etc/ste_modem.sh
+    seclabel u:r:phonet_loader:s0
     class modem-u8500
     user radio
     group radio
@@ -372,6 +375,7 @@ service admsrv /system/bin/admsrv
 
 # Initialize Bluetooth/FM/GPS chip
 service init_ste-cg2900 /system/bin/hciattach -a 23 -n -s 115200 /dev/ttyAMA0 cg2900 115200 flow
+    seclabel u:r:bluetooth_loader:s0
     user bluetooth
     group bluetooth net_bt_admin system net_bt_stack
     disabled
@@ -379,6 +383,7 @@ service init_ste-cg2900 /system/bin/hciattach -a 23 -n -s 115200 /dev/ttyAMA0 cg
     
 # Install Wireless drivers
 service init_ste-cw1200 /system/bin/install_wlan.sh
+    seclabel u:r:wlan_loader:s0
     disabled
     oneshot
 
@@ -429,6 +434,7 @@ service iprenew_bnep0 /system/bin/dhcpcd -n
     oneshot
 
 service dhcpcd_fix /system/bin/rm /data/misc/dhcp/*
+    seclabel u:r:dhcpcd_fix:s0
     user root
     group root system dhcp
     disabled
@@ -436,6 +442,7 @@ service dhcpcd_fix /system/bin/rm /data/misc/dhcp/*
 
 # Regulatory domain handling
 service initial_regdom /system/bin/iw reg set US
+    seclabel u:r:wlan_loader:s0
     disabled
     oneshot
 
@@ -447,6 +454,7 @@ service cn_server /system/bin/cn_server
 
 # STE, PS connection control
 service init_stepscc /system/bin/sh /data/misc/psdata/stepscc_init.sh
+    seclabel u:r:pscc_loader:s0
     class main
     oneshot
 
@@ -457,6 +465,7 @@ service psccd /system/bin/psccd -f -c /data/misc/psdata/stepscc_conf
 
 # STE, PS routing control
 service init_sterc /system/bin/sh /data/misc/psdata/sterc_init.sh
+    seclabel u:r:sterc_loader:s0
     class main
     oneshot
 
@@ -491,6 +500,7 @@ service atd /system/bin/at_core -mode normal -serial ttyGS0
     group radio audio system
 
 service watchdog-kicker /system/xbin/watchdog-kicker -d /dev/watchdog -t 120
+    seclabel u:r:watchdogd:s0
     class main
     oneshot
 

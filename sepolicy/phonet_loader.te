@@ -1,0 +1,2 @@
+# STE: required for Phonet communication with Modem
+type phonet_loader, domain;

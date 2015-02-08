@@ -1,0 +1,14 @@
+# Define mpdecision device
+type device_latency, dev_type;
+
+# Added for fm_radio device
+type  fm_radio_device, dev_type;
+
+# Define modem partition device
+type modem_partition_device, dev_type;
+
+# Define cg9200 device
+type cg9200_device, dev_type;
+
+# Define rfkill device
+type rfkill_device, dev_type;
