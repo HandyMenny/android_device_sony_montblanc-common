@@ -2,3 +2,12 @@
 type cn_server, domain;
 type cn_server_exec, exec_type, file_type;
 init_daemon_domain(cn_server)
+
+allow cn_server modem_data_file:dir r_file_perms;
+allow cn_server modem_data_file:file r_file_perms;
+allow cn_server radio_prop:property_service set;
+allow cn_server self:capability net_admin;
+allow cn_server self:netlink_socket create_socket_perms;
+allow cn_server self:process execmem;
+allow cn_server self:socket create_socket_perms;
+allow cn_server system_data_file:dir read;

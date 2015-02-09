@@ -2,3 +2,10 @@
 type copsd, domain;
 type copsd_exec, exec_type, file_type;
 init_daemon_domain(copsd)
+
+allow copsd self:capability dac_override;
+allow copsd socket_device:sock_file write;
+allow copsd tad:unix_stream_socket connectto;
+allow copsd modem_data_file:file unlink;
+allow copsd system_data_file:dir { write remove_name add_name };
+allow copsd system_data_file:file { rename create setattr };

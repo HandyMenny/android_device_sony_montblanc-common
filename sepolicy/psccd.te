@@ -2,3 +2,5 @@
 type psccd, domain;
 type psccd_exec, exec_type, file_type;
 init_daemon_domain(psccd)
+
+allow psccd self:process execmem;

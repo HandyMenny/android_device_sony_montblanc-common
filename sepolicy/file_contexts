@@ -7,6 +7,7 @@
 /dev/dbx500_mloader_fw                     u:object_r:radio_device:s0
 /dev/db8500-modem-trace                   u:object_r:radio_device:s0
 /dev/rpc u:object_r:radio_device:s0
+/dev/block/mmcblk0                              u:object_r:mmc_block_device:s0
 
 # Graphics
 /dev/hwmem u:object_r:graphics_device:s0
@@ -15,8 +16,8 @@
 /dev/b2r2_blt u:object_r:graphics_device:s0
 
 # cg2900
-/dev/cg2900_.* u:object_r:cg9200_device:s0
-/dev/ttyAMA0   u:object_r:cg9200_device:s0
+/dev/cg2900_.* u:object_r:cg2900_device:s0
+/dev/ttyAMA0   u:object_r:cg2900_device:s0
 
 # System binaries
 /system/bin/admsrv u:object_r:admsrv_exec:s0
@@ -54,6 +55,9 @@
 /data/etc/bluetooth_bdaddr u:object_r:bluetooth_data_file:s0
 /data/etc/wlan_macaddr u:object_r:wifi_data_file:s0
 /data/camera(/.*)?  u:object_r:camera_socket:s0
+/data/misc/telephony_log_levels  u:object_r:modem_data_file:s0
+/data/misc/mal_debug_level  u:object_r:modem_data_file:s0
+/data/misc/COPS_DATA_0.csd      u:object_r:modem_data_file:s0
 
 # Modemfs labeling (requires: $ restorecon -R /modemfs)
-/modemfs(/.*)? u:object_r:modemfs:s0
+/modemfs(/.*)? u:object_r:modem_file:s0
