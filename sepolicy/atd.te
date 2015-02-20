@@ -9,3 +9,4 @@ allow atd modem_data_file:dir r_dir_perms;
 allow atd at_device:chr_file rw_file_perms;
 allow atd self:capability { setuid dac_override };
 allow atd self:process execmem;
+file_type_auto_trans(atd, socket_device, at_socket);

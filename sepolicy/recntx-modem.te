@@ -1,0 +1,4 @@
+# Recursive restore contexts on /modemfs
+type recntx-modem, domain;
+type recntx-modem_exec, exec_type, file_type;
+init_daemon_domain(recntx-modem)

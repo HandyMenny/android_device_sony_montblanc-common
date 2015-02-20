@@ -144,6 +144,9 @@ on post-fs
     write /sys/devices/platform/musb-ux500.0/musb-hdrc/gadget/lun1/nofua 1
 
 on post-fs-data
+
+    start recntx-modem
+
     # create basic filesystem structure
     mkdir /data/misc/hcid 0770 bluetooth bluetooth
     mkdir /data/misc/psdata
@@ -337,6 +340,10 @@ on boot
     # STE: Enable wide-band speech for Bluetooth
     setprop bt.hfp.wideband 1
 
+service recntx-modem /system/bin/sh /system/etc/restorecon_modemfs.sh
+    oneshot
+    disabled
+
 # init shrm net device required for Phonet communication with Modem
 service shrm-netdev /system/bin/ifconfig shrm0 up
     seclabel u:r:conn_init:s0
@@ -433,7 +440,7 @@ service iprenew_bnep0 /system/bin/dhcpcd -n
     oneshot
 
 service dhcpcd_fix /system/bin/rm /data/misc/dhcp/*
-    seclabel u:r:dhcpc:s0
+    seclabel u:r:dhcp:s0
     user root
     group root system dhcp
     disabled

@@ -10,3 +10,6 @@ allow sms_server modem_data_file:file r_file_perms;
 allow sms_server system_data_file:dir read;
 allow sms_server self:netlink_socket create_socket_perms;
 allow sms_server self:socket create_socket_perms;
+allow sms_server simd:unix_stream_socket connectto;
+file_type_auto_trans(sms_server, socket_device, sms_server_socket);
+allow sms_server simd_socket:sock_file write;

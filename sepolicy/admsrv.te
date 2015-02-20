@@ -5,15 +5,10 @@ type admsrv_exec, exec_type, file_type;
 init_daemon_domain(admsrv)
 allow admsrv self:capability sys_nice;
 allow admsrv self:capability { chown dac_override fowner net_admin };
-allow admsrv shell_data_file:dir { read search setattr add_name remove_name write };
-allow admsrv shell_data_file:sock_file { create getattr setattr open read write unlink };
-allow admsrv shell_data_file:file { open getattr setattr read write unlink create lock };
 allow admsrv sysfs_wake_lock: file { open read write };
 allow admsrv system_file:file { execute_no_trans };
 allow admsrv admsrv:process { execmem };
 allow admsrv shell_exec:file { execute open read execute_no_trans };
-allow admsrv system_data_file:dir { open read write remove_name add_name setattr };
-allow admsrv system_data_file:file { create open rename read write link unlink lock setattr };
 allow admsrv device:file { open read write };
 allow admsrv audio_device:dir { search };
 allow admsrv audio_device:chr_file { open getattr read write ioctl };

@@ -6,3 +6,4 @@ init_daemon_domain(psccd)
 allow psccd self:process execmem;
 allow psccd self:socket read;
 allow psccd stercd:unix_dgram_socket sendto;
+file_type_auto_trans(psccd, socket_device, pscc_socket);

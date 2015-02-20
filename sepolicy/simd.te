@@ -6,7 +6,7 @@ init_daemon_domain(simd)
 allow simd modem_data_file:dir r_dir_perms;
 allow simd self:capability setuid;
 allow simd socket_device:dir w_dir_perms;
-allow simd socket_device:sock_file create;
 allow simd self:process execmem;
 allow simd self:socket { read write };
 allow simd sysfs:file write;
+file_type_auto_trans(simd, socket_device, simd_socket);

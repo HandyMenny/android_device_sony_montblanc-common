@@ -128,6 +128,7 @@ BOARD_SEPOLICY_UNION += \
        copsd.te \
        device.te \
        hci_attach.te \
+       hw_config.te \
        init.te \
        init_shell.te \
        iw.te \
@@ -136,11 +137,13 @@ BOARD_SEPOLICY_UNION += \
        modem-supervisor.te \
        msa.te \
        psccd.te \
+       recntx-modem.te \
        rild.te \
        simd.te \
        simpbd.te \
        sms_server.te \
        stercd.te \
+       suntrold.te \
        surfaceflinger.te \
        tad.te \
        updatemiscta.te \

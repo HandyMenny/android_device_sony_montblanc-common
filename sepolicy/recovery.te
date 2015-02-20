@@ -1,4 +1,3 @@
-# Make recovery domain permissive so we can set SELinux permissive
 recovery_only(`
   # Allow recovery to set permissive mode
   permissive recovery;
