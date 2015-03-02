@@ -123,6 +123,7 @@ BOARD_SEPOLICY_DIRS += device/sony/montblanc-common/sepolicy
 BOARD_SEPOLICY_UNION += \
        admsrv.te \
        atd.te \
+       bluetoothd.te \
        cn_server.te \
        conn_init.te \
        copsd.te \
@@ -138,7 +139,6 @@ BOARD_SEPOLICY_UNION += \
        modem-supervisor.te \
        msa.te \
        psccd.te \
-       recntx-modem.te \
        rild.te \
        simd.te \
        simpbd.te \

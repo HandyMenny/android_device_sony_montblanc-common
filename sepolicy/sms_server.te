@@ -14,3 +14,4 @@ file_type_auto_trans(sms_server, socket_device, sms_server_socket);
 allow sms_server simd_socket:sock_file write;
 allow sms_server apk_private_data_file:dir search;
 allow sms_server socket_device:dir remove_name;
+allow sms_server system_data_file:dir r_dir_perms;
