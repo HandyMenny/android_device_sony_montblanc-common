@@ -1,0 +1,1 @@
+allow system_server lbsd:unix_stream_socket connectto;

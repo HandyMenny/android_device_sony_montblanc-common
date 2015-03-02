@@ -3,13 +3,14 @@ type sms_server, domain;
 type sms_server_exec, exec_type, file_type;
 init_daemon_domain(sms_server)
 
-allow sms_server modem_data_file:dir r_dir_perms;
-allow sms_server self:capability { setuid dac_override net_admin };
+allow sms_server radio_data_file:dir r_dir_perms;
+allow sms_server self:capability { setuid sys_admin dac_override net_admin };
 allow sms_server self:process execmem;
-allow sms_server modem_data_file:file r_file_perms;
-allow sms_server system_data_file:dir read;
+allow sms_server radio_data_file:file r_file_perms;
 allow sms_server self:netlink_socket create_socket_perms;
 allow sms_server self:socket create_socket_perms;
 allow sms_server simd:unix_stream_socket connectto;
 file_type_auto_trans(sms_server, socket_device, sms_server_socket);
 allow sms_server simd_socket:sock_file write;
+allow sms_server apk_private_data_file:dir search;
+allow sms_server socket_device:dir remove_name;

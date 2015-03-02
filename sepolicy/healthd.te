@@ -6,3 +6,4 @@ allow healthd tad:unix_stream_socket connectto;
 allow healthd tad_socket:sock_file w_file_perms;
 allow healthd tmpfs:chr_file getattr;
 allow healthd sysfs_devices_system_cpu:file write;
+allow healthd chargemon_prop:property_service set;

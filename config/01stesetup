@@ -1,6 +1,6 @@
 #!/system/bin/sh
 
-cp -f /system/etc/ril_config /data/misc/ril_config
+busybox cp -cf /system/etc/ril_config /data/misc/ril_config
 chmod 0660 /data/misc/ril_config
 chown root:radio /data/misc/ril_config
 cp -f /system/etc/psdata/sterc_conf /data/misc/psdata/sterc_conf

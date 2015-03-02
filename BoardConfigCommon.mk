@@ -127,6 +127,7 @@ BOARD_SEPOLICY_UNION += \
        conn_init.te \
        copsd.te \
        device.te \
+       dhcp.te \
        hci_attach.te \
        hw_config.te \
        init.te \
@@ -142,7 +143,6 @@ BOARD_SEPOLICY_UNION += \
        simd.te \
        simpbd.te \
        sms_server.te \
-       stercd.te \
        suntrold.te \
        surfaceflinger.te \
        tad.te \

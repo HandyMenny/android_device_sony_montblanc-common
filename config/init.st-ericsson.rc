@@ -118,6 +118,8 @@ on post-fs
     chmod 0644 /modemfs/PERM/PROT/LABEP.CFG
     chown radio radio /modemfs/PERM/PROT/PPVALUES.DAT
     chmod 0644 /modemfs/PERM/PROT/PPVALUES.DAT
+    
+    restorecon_recursive /modemfs
 
     # STE: Set permissions for wake locks before services are launched that use them
     chown radio system /sys/power/state
@@ -144,8 +146,6 @@ on post-fs
     write /sys/devices/platform/musb-ux500.0/musb-hdrc/gadget/lun1/nofua 1
 
 on post-fs-data
-
-    start recntx-modem
 
     # create basic filesystem structure
     mkdir /data/misc/hcid 0770 bluetooth bluetooth
@@ -339,10 +339,6 @@ on boot
 
     # STE: Enable wide-band speech for Bluetooth
     setprop bt.hfp.wideband 1
-
-service recntx-modem /system/bin/sh /system/etc/restorecon_modemfs.sh
-    oneshot
-    disabled
 
 # init shrm net device required for Phonet communication with Modem
 service shrm-netdev /system/bin/ifconfig shrm0 up

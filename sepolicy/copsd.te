@@ -13,3 +13,8 @@ allow copsd sysfs_wake_lock:file w_file_perms;
 allow copsd radio_device:chr_file rw_file_perms;
 allow copsd tee_device:chr_file rw_file_perms;
 file_type_auto_trans(copsd, socket_device, cops_socket);
+file_type_auto_trans(copsd, system_data_file, cops_data_file);
+allow copsd mmc_block_device:blk_file rw_file_perms;
+allow copsd root_block_device:blk_file rw_file_perms;
+allow copsd system_data_file:dir remove_name;
+allow copsd block_device:dir search;

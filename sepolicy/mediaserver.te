@@ -1,7 +1,9 @@
 allow mediaserver camera_prop:property_service set;
-allow mediaserver camera_socket:file { read write getattr open };
-allow mediaserver graphics_device:chr_file { open read write getattr ioctl };
+allow mediaserver camera_socket:dir w_dir_perms;
+allow mediaserver camera_socket:file create_file_perms;
 allow mediaserver admsrv:fd { use };
 allow mediaserver admsrv_tmpfs:file { open getattr read write };
 allow mediaserver admsrv:unix_stream_socket { connectto };
 allow mediaserver system_server:unix_stream_socket { read write };
+allow mediaserver stm_device:chr_file rw_file_perms;
+allow mediaserver cm_device:chr_file rw_file_perms;

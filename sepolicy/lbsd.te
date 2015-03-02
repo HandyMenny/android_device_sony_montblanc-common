@@ -5,8 +5,13 @@ init_daemon_domain(lbsd)
 
 allow lbsd cn_server:unix_stream_socket connectto;
 allow lbsd self:capability { setuid net_admin dac_override };
-allow lbsd self:netlink_socket { bind create setopt };
+allow lbsd self:netlink_socket create_socket_perms;
 allow lbsd self:process execmem;
-allow lbsd self:socket { write bind create read };
+allow lbsd self:socket create_socket_perms;
 allow lbsd simd:unix_stream_socket connectto;
 allow lbsd sms_server:unix_stream_socket connectto;
+allow lbsd cg2900_device:chr_file rw_file_perms;
+allow lbsd sysfs_wake_lock:file rw_file_perms;
+file_type_auto_trans(lbsd, device, gps_socket);
+allow lbsd cn_socket:sock_file write;
+allow lbsd sms_server_socket:sock_file write;

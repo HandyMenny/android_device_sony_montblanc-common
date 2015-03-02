@@ -1,5 +1,3 @@
 allow init self:capability sys_module;
 allow init self:process execmem;
-
-# init (pid=1) want to "getattr" of the file /data/local/tmp/stecom*, I don't know why.
 allow init shell_data_file:sock_file getattr;
