@@ -1,2 +1,4 @@
 # camera socket
 type camera_socket, file_type;
+# Modemfs 
+type modemfs, fs_type;

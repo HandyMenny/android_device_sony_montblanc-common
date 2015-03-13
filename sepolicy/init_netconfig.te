@@ -1,0 +1,2 @@
+# Configurate TCP/IP kernel settings
+type init_netconfig, domain;

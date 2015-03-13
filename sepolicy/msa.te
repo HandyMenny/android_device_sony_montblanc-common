@@ -1,0 +1,4 @@
+#STE: Modem Software Agent
+type msa, domain;
+type msa_exec, exec_type, file_type;
+init_daemon_domain(msa)

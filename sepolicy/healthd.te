@@ -1,0 +1,3 @@
+# Our charger is a system binary
+type healthd_exec, exec_type, file_type;
+init_daemon_domain(healthd)

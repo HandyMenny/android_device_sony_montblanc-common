@@ -35,6 +35,15 @@
 /system/bin/updatemiscta u:object_r:updatemiscta_exec:s0
 /system/bin/suntrold u:object_r:suntrold_exec:s0
 /system/bin/lbsd u:object_r:lbsd_exec:s0
+/system/bin/hciattach u:object_r:hci_attach_exec:s0
+/system/bin/msa u:object_r:msa_exec:s0
+
+# SEMC: TrimArea Daemon and early TA-users
+/system/bin/startupflag     u:object_r:tad_exec:s0
+/system/bin/wait4tad        u:object_r:tad_exec:s0
+/system/bin/rfhal_export   u:object_r:tad_exec:s0
+/system/bin/taimport         u:object_r:tad_exec:s0
+/system/bin/tad                  u:object_r:tad_exec:s0
 
 # for wpa
 /dev/rfkill u:object_r:rfkill_device:s0
@@ -43,3 +52,6 @@
 /data/etc/bluetooth_bdaddr u:object_r:bluetooth_data_file:s0
 /data/etc/wlan_macaddr u:object_r:wifi_data_file:s0
 /data/camera(/.*)?  u:object_r:camera_socket:s0
+
+# Modemfs labeling
+/modemfs(/.*)? u:object_r:modemfs:s0

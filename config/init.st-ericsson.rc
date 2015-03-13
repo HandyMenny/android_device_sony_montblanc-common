@@ -375,7 +375,6 @@ service admsrv /system/bin/admsrv
 
 # Initialize Bluetooth/FM/GPS chip
 service init_ste-cg2900 /system/bin/hciattach -a 23 -n -s 115200 /dev/ttyAMA0 cg2900 115200 flow
-    seclabel u:r:bluetooth_loader:s0
     user bluetooth
     group bluetooth net_bt_admin system net_bt_stack
     disabled
