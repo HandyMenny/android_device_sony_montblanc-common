@@ -1,2 +1,8 @@
 allow init self:capability sys_module;
 allow init self:process execmem;
+allow init wlan_loader:process { siginh transition rlimitinh };
+allow init phonet_loader:process { siginh transition rlimitinh };
+allow init pscc_loader:process { siginh transition rlimitinh };
+allow init sterc_loader:process { siginh transition rlimitinh };
+allow init usbid_init:process { siginh transition rlimitinh };
+allow init dhcpcd_fix:process { siginh transition rlimitinh };

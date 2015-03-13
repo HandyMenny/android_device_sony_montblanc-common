@@ -3,17 +3,20 @@
 /dev/ttyGS0                                            u:object_r:radio_device:s0
 /dev/ttyAMA2   				       u:object_r:console_device:s0
 /dev/radio0                                            u:object_r:fm_radio_device:s0
-/dev/mmcblk0p[5-6]*		              u:object_r:modem_partition_device:s0
+/dev/block/mmcblk0.*                          u:object_r:mmc_block_device:s0
+/dev//block/mmcblk0p[5-6]*		      u:object_r:modem_partition_device:s0
 /dev/dbx500_mloader_fw                     u:object_r:radio_device:s0
 /dev/db8500-modem-trace                   u:object_r:radio_device:s0
 /dev/rpc u:object_r:radio_device:s0
-/dev/block/mmcblk0                              u:object_r:mmc_block_device:s0
+/dev/sec u:object_r:radio_device:s0
 
 # Graphics
 /dev/hwmem u:object_r:graphics_device:s0
 /dev/comp0 u:object_r:graphics_device:s0
 /dev/mali u:object_r:graphics_device:s0
 /dev/b2r2_blt u:object_r:graphics_device:s0
+
+/dev/stm u:object_r:audio_device:s0
 
 # cg2900
 /dev/cg2900_.* u:object_r:cg2900_device:s0
@@ -29,16 +32,16 @@
 /system/bin/simpbd u:object_r:simpbd_exec:s0
 /system/bin/sms_server u:object_r:sms_server_exec:s0
 /system/bin/at_core u:object_r:atd_exec:s0
-/system/bin/ste_mad u:object_r:mad_exec:s0
 /system/bin/modemcatcher u:object_r:modemcatcher_exec:s0
 /system/bin/psccd u:object_r:psccd_exec:s0
 /system/bin/stercd u:object_r:stercd_exec:s0
 /system/bin/updatemiscta u:object_r:updatemiscta_exec:s0
-/system/bin/suntrold u:object_r:suntrold_exec:s0
 /system/bin/lbsd u:object_r:lbsd_exec:s0
 /system/bin/hciattach u:object_r:hci_attach_exec:s0
 /system/bin/msa u:object_r:msa_exec:s0
 /system/bin/iw    u:object_r:iw_exec:s0
+/system/bin/install_wlan.sh u:object_r:shell_exec:s0
+/system/bin/usbid_init.sh u:object_r:shell_exec:s0
 /system/xbin/watchdog-kicker u:object_r:watchdogd_exec:s0
 
 # SEMC: TrimArea Daemon and early TA-users
@@ -55,9 +58,14 @@
 /data/etc/bluetooth_bdaddr u:object_r:bluetooth_data_file:s0
 /data/etc/wlan_macaddr u:object_r:wifi_data_file:s0
 /data/camera(/.*)?  u:object_r:camera_socket:s0
-/data/misc/telephony_log_levels  u:object_r:modem_data_file:s0
 /data/misc/mal_debug_level  u:object_r:modem_data_file:s0
-/data/misc/COPS_DATA_0.csd      u:object_r:modem_data_file:s0
+/data/misc/psdata(/.*)?  u:object_r:pscc_data_file:s0
+/data/misc/telephony_log_levels(/.*)?  u:object_r:modem_data_file:s0
+/data/misc/ril_config  u:object_r:modem_data_file:s0
 
 # Modemfs labeling (requires: $ restorecon -R /modemfs)
 /modemfs(/.*)? u:object_r:modem_file:s0
+
+# Socket
+/dev/socket/modemcatcher  u:object_r:modem_socket:s0
+/dev/socket/tad   u:object_r:tad_socket:s0

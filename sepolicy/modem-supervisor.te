@@ -2,3 +2,7 @@
 type modem-supervisor, domain;
 type modem-supervisor_exec, exec_type, file_type;
 init_daemon_domain(modem-supervisor)
+
+allow modem-supervisor self:netlink_socket create_socket_perms;
+allow modem-supervisor self:process execmem;
+allow modem-supervisor self:capability net_admin;

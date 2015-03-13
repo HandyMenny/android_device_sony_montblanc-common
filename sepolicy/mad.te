@@ -1,4 +1,0 @@
-# STE, Modem Access daemon
-type mad, domain;
-type mad_exec, exec_type, file_type;
-init_daemon_domain(mad)

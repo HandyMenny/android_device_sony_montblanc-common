@@ -4,3 +4,5 @@ type simpbd_exec, exec_type, file_type;
 init_daemon_domain(simpbd)
 
 allow simpbd self:process execmem;
+allow simpbd socket_device:dir w_dir_perms;
+allow simpbd socket_device:sock_file rw_file_perms;

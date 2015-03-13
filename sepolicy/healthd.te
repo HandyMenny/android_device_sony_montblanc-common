@@ -1,3 +1,8 @@
 # Our charger is a system binary
 type healthd_exec, exec_type, file_type;
 init_daemon_domain(healthd)
+
+allow healthd tad:unix_stream_socket connectto;
+allow healthd tad_socket:sock_file w_file_perms;
+allow healthd tmpfs:chr_file getattr;
+allow healthd sysfs_devices_system_cpu:file write;

@@ -1,2 +1,4 @@
 # STE, PS connection control
 type pscc_loader, domain;
+
+allow pscc_loader shell_exec:file { r_file_perms entrypoint };

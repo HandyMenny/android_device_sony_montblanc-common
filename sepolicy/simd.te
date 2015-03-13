@@ -2,3 +2,11 @@
 type simd, domain;
 type simd_exec, exec_type, file_type;
 init_daemon_domain(simd)
+
+allow simd modem_data_file:dir r_dir_perms;
+allow simd self:capability setuid;
+allow simd socket_device:dir w_dir_perms;
+allow simd socket_device:sock_file create;
+allow simd self:process execmem;
+allow simd self:socket { read write };
+allow simd sysfs:file write;

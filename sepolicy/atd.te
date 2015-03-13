@@ -2,3 +2,10 @@
 type atd, domain;
 type atd_exec, exec_type, file_type;
 init_daemon_domain(atd)
+
+allow atd admsrv:unix_stream_socket connectto;
+allow atd cn_server:unix_stream_socket connectto;
+allow atd modem_data_file:dir { read getattr open };
+allow atd radio_device:chr_file { read write ioctl open };
+allow atd self:capability { setuid dac_override };
+allow atd self:process execmem;

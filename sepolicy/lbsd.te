@@ -2,3 +2,11 @@
 type lbsd, domain;
 type lbsd_exec, exec_type, file_type;
 init_daemon_domain(lbsd)
+
+allow lbsd cn_server:unix_stream_socket connectto;
+allow lbsd self:capability { setuid net_admin dac_override };
+allow lbsd self:netlink_socket { bind create setopt };
+allow lbsd self:process execmem;
+allow lbsd self:socket { write bind create read };
+allow lbsd simd:unix_stream_socket connectto;
+allow lbsd sms_server:unix_stream_socket connectto;

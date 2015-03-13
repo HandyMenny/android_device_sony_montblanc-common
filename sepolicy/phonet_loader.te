@@ -1,2 +1,13 @@
 # STE: required for Phonet communication with Modem
 type phonet_loader, domain;
+
+allow phonet_loader devpts:chr_file rw_file_perms;
+allow phonet_loader modem_file:dir rw_dir_perms;
+allow phonet_loader modem_file:file rw_file_perms;
+allow phonet_loader msa_exec:file rx_file_perms;
+allow phonet_loader radio_device:chr_file rw_file_perms;
+allow phonet_loader self:process execmem;
+allow phonet_loader self:capability { net_admin net_raw };
+allow phonet_loader sysfs_wake_lock:file w_file_perms;
+allow phonet_loader self:udp_socket { create ioctl };
+allow phonet_loader shell_exec:file { read entrypoint };

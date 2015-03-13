@@ -3,9 +3,16 @@ type copsd, domain;
 type copsd_exec, exec_type, file_type;
 init_daemon_domain(copsd)
 
-allow copsd self:capability dac_override;
-allow copsd socket_device:sock_file write;
+allow copsd mmc_block_device:blk_file rw_file_perms;
+allow copsd radio_device:chr_file rw_file_perms;
+allow copsd self:capability { chown dac_override fowner fsetid net_admin };
+allow copsd self:netlink_socket create_socket_perms;
+allow copsd self:process execmem;
+allow copsd socket_device:dir w_dir_perms;
+allow copsd socket_device:sock_file { create w_file_perms };
+allow copsd sysfs:file w_file_perms;
+allow copsd system_data_file:file create_file_perms;
+allow copsd system_data_file:dir w_dir_perms;
+allow copsd tad_socket:sock_file w_file_perms;
 allow copsd tad:unix_stream_socket connectto;
-allow copsd modem_data_file:file unlink;
-allow copsd system_data_file:dir { write remove_name add_name };
-allow copsd system_data_file:file { rename create setattr };
+allow copsd sysfs_wake_lock:file w_file_perms;

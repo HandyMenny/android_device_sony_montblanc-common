@@ -1,3 +1,0 @@
-# Configurate TCP/IP kernel settings
-type init_netconfig, domain;
-allow init_netconfig shell_exec:file read;

@@ -4,9 +4,7 @@ type admsrv, domain;
 type admsrv_exec, exec_type, file_type;
 init_daemon_domain(admsrv)
 allow admsrv self:capability sys_nice;
-allow admsrv self:capability chown;
-allow admsrv self:capability dac_override;
-allow admsrv self:capability fowner;
+allow admsrv self:capability { chown dac_override fowner net_admin };
 allow admsrv shell_data_file:dir { read search setattr add_name remove_name write };
 allow admsrv shell_data_file:sock_file { create getattr setattr open read write unlink };
 allow admsrv shell_data_file:file { open getattr setattr read write unlink create lock };

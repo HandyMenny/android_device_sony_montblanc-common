@@ -1,1 +1,2 @@
 allow rild self:process execmem;
+allow rild socket_device:sock_file write;

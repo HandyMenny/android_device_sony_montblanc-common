@@ -2,3 +2,8 @@
 type iw, domain;
 type iw_exec, exec_type, file_type;
 init_daemon_domain(iw)
+
+allow iw kernel:system module_request;
+allow iw self:capability { net_admin net_raw };
+allow iw self:netlink_socket { write getattr setopt read bind create };
+allow iw self:udp_socket { create ioctl };

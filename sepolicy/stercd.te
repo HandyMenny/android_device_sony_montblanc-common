@@ -3,4 +3,9 @@ type stercd, domain;
 type stercd_exec, exec_type, file_type;
 init_daemon_domain(stercd)
 
+allow stercd modem_data_file:dir r_dir_perms;
+allow stercd self:capability dac_override;
 allow stercd self:process execmem;
+allow stercd system_data_file:dir r_dir_perms;
+allow stercd pscc_data_file:file r_file_perms;
+allow stercd psccd:unix_dgram_socket sendto;

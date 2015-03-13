@@ -1,4 +1,4 @@
 # STE, PS routing control
 type sterc_loader, domain;
 
-allow sterc_loader shell_exec:file entrypoint;
+allow sterc_loader shell_exec:file { r_file_perms entrypoint };
