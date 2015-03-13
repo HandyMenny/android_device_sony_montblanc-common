@@ -4,3 +4,4 @@ allow sysinit modem_data_file:file create_file_perms;
 allow sysinit self:capability { dac_override fowner chown fsetid };
 allow sysinit system_data_file:dir w_dir_perms;
 allow sysinit wifi_data_file:file create_file_perms;
+allow sysinit rootfs:file x_file_perms;

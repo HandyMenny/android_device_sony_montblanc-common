@@ -1,1 +1,1 @@
-allow hci_attach cg2900_device:chr_file rw_file_perms;
+allow hci_attach bluetooth_device:chr_file rw_file_perms;

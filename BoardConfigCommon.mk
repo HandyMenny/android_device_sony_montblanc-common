@@ -124,9 +124,9 @@ BOARD_SEPOLICY_UNION += \
        admsrv.te \
        atd.te \
        cn_server.te \
+       conn_init.te \
        copsd.te \
        device.te \
-       dhcpcd_fix.te \
        hci_attach.te \
        init.te \
        init_shell.te \
@@ -135,18 +135,14 @@ BOARD_SEPOLICY_UNION += \
        modemcatcher.te \
        modem-supervisor.te \
        msa.te \
-       phonet_loader.te \
        psccd.te \
-       pssc_loader.te \
        rild.te \
        simd.te \
        simpbd.te \
        sms_server.te \
        stercd.te \
-       sterc_loader.te \
        surfaceflinger.te \
        tad.te \
        updatemiscta.te \
        watchdogd.te \
-       wlan_loader.te \
        wpa.te

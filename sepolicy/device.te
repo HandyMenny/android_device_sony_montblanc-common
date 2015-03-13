@@ -4,9 +4,6 @@ type device_latency, dev_type;
 # Added for fm_radio device
 type  fm_radio_device, dev_type;
 
-# Define modem partition device
-type modem_partition_device, dev_type;
-
 # Define cg2900 device
 type cg2900_device, dev_type;
 
@@ -14,3 +11,19 @@ type cg2900_device, dev_type;
 type rfkill_device, dev_type;
 
 type mmc_block_device, dev_type;
+type modem_block_device, dev_type;
+
+# Define bluetooth device
+type bluetooth_device, dev_type;
+
+# Added for XTI trace device
+type stm_device, dev_type;
+
+# Define AT USB device - used by ATC
+type at_device, dev_type;
+
+# Added for PWR QOS devices
+type pwr_device, dev_type;
+
+# Added for NMF CM devices
+type cm_device, dev_type;

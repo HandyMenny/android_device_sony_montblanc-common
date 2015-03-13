@@ -1,4 +1,0 @@
-# Fix dhcpcd
-type dhcpcd_fix, domain;
-
-allow dhcpcd_fix dhcp_data_file:dir search;

@@ -1,6 +1,0 @@
-# Wlan loader
-type wlan_loader, domain;
-
-allow wlan_loader self:capability sys_module;
-allow wlan_loader shell_exec:file { entrypoint rx_file_perms };
-allow wlan_loader wifi_data_file:file r_file_perms;

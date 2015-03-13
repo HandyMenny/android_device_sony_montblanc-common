@@ -4,7 +4,6 @@ type copsd_exec, exec_type, file_type;
 init_daemon_domain(copsd)
 
 allow copsd mmc_block_device:blk_file rw_file_perms;
-allow copsd radio_device:chr_file rw_file_perms;
 allow copsd self:capability { chown dac_override fowner fsetid net_admin };
 allow copsd self:netlink_socket create_socket_perms;
 allow copsd self:process execmem;
@@ -16,3 +15,5 @@ allow copsd system_data_file:dir w_dir_perms;
 allow copsd tad_socket:sock_file w_file_perms;
 allow copsd tad:unix_stream_socket connectto;
 allow copsd sysfs_wake_lock:file w_file_perms;
+allow copsd radio_device:chr_file rw_file_perms;
+allow copsd tee_device:chr_file rw_file_perms;

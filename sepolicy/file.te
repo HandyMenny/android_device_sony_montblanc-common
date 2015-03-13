@@ -7,3 +7,4 @@ type modem_socket, file_type;
 type tad_socket, file_type;
 type tad_data_file, file_type, data_file_type;
 type pscc_data_file, file_type, data_file_type;
+allow modem_file self:filesystem associate;
