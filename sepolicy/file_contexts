@@ -37,6 +37,8 @@
 /system/bin/lbsd u:object_r:lbsd_exec:s0
 /system/bin/hciattach u:object_r:hci_attach_exec:s0
 /system/bin/msa u:object_r:msa_exec:s0
+/system/bin/iw    u:object_r:iw_exec:s0
+/system/xbin/watchdog-kicker u:object_r:watchdogd_exec:s0
 
 # SEMC: TrimArea Daemon and early TA-users
 /system/bin/startupflag     u:object_r:tad_exec:s0
@@ -53,5 +55,5 @@
 /data/etc/wlan_macaddr u:object_r:wifi_data_file:s0
 /data/camera(/.*)?  u:object_r:camera_socket:s0
 
-# Modemfs labeling
+# Modemfs labeling (requires: $ restorecon -R /modemfs)
 /modemfs(/.*)? u:object_r:modemfs:s0

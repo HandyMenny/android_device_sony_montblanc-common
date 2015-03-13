@@ -1,4 +1,6 @@
 # camera socket
 type camera_socket, file_type;
-# Modemfs 
+# Modemfs
 type modemfs, fs_type;
+# Allow files to be created in their appropriate filesystems.
+allow modemfs rootfs:filesystem associate;

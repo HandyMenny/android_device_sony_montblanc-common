@@ -130,6 +130,7 @@ BOARD_SEPOLICY_UNION += \
        init.te \
        init_netconfig.te \
        init_shell.te \
+       iw.te \
        lbsd.te \
        mad.te \
        mediaserver.te \
@@ -148,5 +149,6 @@ BOARD_SEPOLICY_UNION += \
        suntrold.te \
        tad.te \
        updatemiscta.te \
+       watchdogd.te \
        wlan_loader.te \
        wpa.te

@@ -441,7 +441,6 @@ service dhcpcd_fix /system/bin/rm /data/misc/dhcp/*
 
 # Regulatory domain handling
 service initial_regdom /system/bin/iw reg set US
-    seclabel u:r:wlan_loader:s0
     disabled
     oneshot
 
@@ -499,7 +498,6 @@ service atd /system/bin/at_core -mode normal -serial ttyGS0
     group radio audio system
 
 service watchdog-kicker /system/xbin/watchdog-kicker -d /dev/watchdog -t 120
-    seclabel u:r:watchdogd:s0
     class main
     oneshot
 
