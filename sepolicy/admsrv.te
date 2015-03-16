@@ -2,25 +2,19 @@
 #
 type admsrv, domain;
 type admsrv_exec, exec_type, file_type;
-init_daemon_domain(admsrv)
-allow admsrv self:capability sys_nice;
-allow admsrv self:capability { chown dac_override fowner net_admin };
-allow admsrv sysfs_wake_lock: file { open read write };
-allow admsrv system_file:file { execute_no_trans };
-allow admsrv admsrv:process { execmem };
-allow admsrv shell_exec:file { execute open read execute_no_trans };
-allow admsrv device:file { open read write };
-allow admsrv audio_device:dir { search };
-allow admsrv audio_device:chr_file { open getattr read write ioctl };
-allow admsrv unlabeled:file { setattr };
-allow admsrv radio_device:chr_file { open getattr read write ioctl };
-allow admsrv admsrv:netlink_socket { create bind setopt read write };
-allow admsrv tmpfs:dir { open read write add_name remove_name };
-allow admsrv admsrv_tmpfs:file { open read write create unlink };
-allow admsrv cm_device:chr_file rw_file_perms;
-allow admsrv stm_device:chr_file rw_file_perms;
-allow admsrv sysfs:file write;
-allow admsrv shell_data_file:dir w_dir_perms;
-allow admsrv shell_data_file:file create_file_perms;
-allow admsrv shell_data_file:sock_file create_file_perms;
-file_type_auto_trans(admsrv, system_data_file, adm_data_file);
+type admsrv_tmpfs, file_type;
+type_transition admsrv tmpfs:file admsrv_tmpfs;
+domain_auto_trans(init, admsrv_exec, admsrv)
+
+allow admsrv admsrv:netlink_socket create_socket_perms;
+allow admsrv admsrv_tmpfs:file create_file_perms;
+allow admsrv audio_device:dir search;
+allow admsrv { audio_device radio_device stm_device }:chr_file rw_file_perms;
+allow admsrv self:capability { chown dac_override fowner net_admin sys_nice };
+allow admsrv { shell_data_file system_data_file }:dir rw_dir_perms;
+allow admsrv { sysfs sysfs_wake_lock }:file rw_file_perms;
+allow admsrv tmpfs:dir rw_dir_perms;
+allow admsrv audio_data_file:file create_file_perms;
+allow admsrv adm_socket:sock_file create_file_perms;
+type_transition admsrv { shell_data_file system_data_file }:file audio_data_file;
+type_transition admsrv shell_data_file:sock_file adm_socket;

@@ -1,6 +1,0 @@
-# SEMC: modemcatcher
-type modemcatcher, domain;
-type modemcatcher_exec, exec_type, file_type;
-init_daemon_domain(modemcatcher)
-
-allow modemcatcher self:process execmem;

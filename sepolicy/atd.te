@@ -3,14 +3,15 @@ type atd, domain;
 type atd_exec, exec_type, file_type;
 init_daemon_domain(atd)
 
-allow atd admsrv:unix_stream_socket connectto;
-allow atd cn_server:unix_stream_socket connectto;
-allow atd radio_data_file:dir r_dir_perms;
-allow atd at_device:chr_file rw_file_perms;
+allow atd { at_device stm_device }:chr_file rw_file_perms;
 allow atd self:capability { setuid dac_override };
-allow atd self:process execmem;
-file_type_auto_trans(atd, socket_device, at_socket);
-allow atd psccd:unix_dgram_socket sendto;
-allow atd cn_socket:sock_file write;
-allow atd psccd:unix_dgram_socket sendto;
-allow atd stm_device:chr_file rw_file_perms;
+allow atd shell_data_file:dir rw_dir_perms;
+unix_socket_connect(atd, adm, admsrv)
+unix_socket_connect(atd, cn, cn_server)
+unix_socket_connect(atd, cops, copsd)
+unix_socket_connect(atd, simd, simd)
+unix_socket_connect(atd, sms_server, sms_server)
+unix_socket_send(atd, pscc, psccd)
+file_type_auto_trans(atd, socket_device, at_socket)
+file_type_auto_trans(atd, system_data_file, radio_data_file)
+type_transition atd shell_data_file:{ file sock_file } radio_data_file;

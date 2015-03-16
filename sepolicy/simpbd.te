@@ -1,9 +1,0 @@
-# STE, SIMPB daemon
-type simpbd, domain;
-type simpbd_exec, exec_type, file_type;
-init_daemon_domain(simpbd)
-
-allow simpbd self:process execmem;
-allow simpbd socket_device:dir w_dir_perms;
-file_type_auto_trans(simpbd, socket_device, simpbd_socket);
-

@@ -2,7 +2,7 @@
 type device_latency, dev_type;
 
 # Added for fm_radio device
-type  fm_radio_device, dev_type;
+type fm_radio_device, dev_type;
 
 # Define cg2900 device
 type cg2900_device, dev_type;
@@ -24,6 +24,3 @@ type at_device, dev_type;
 
 # Added for PWR QOS devices
 type pwr_device, dev_type;
-
-# Added for NMF CM devices
-type cm_device, dev_type;

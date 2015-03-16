@@ -2,3 +2,20 @@
 type bluetoothd, domain;
 type bluetoothd_exec, exec_type, file_type;
 init_daemon_domain(bluetoothd)
+net_domain(bluetoothd)
+allow bluetoothd bluetoothd_exec:file x_file_perms;
+allow bluetoothd devpts:chr_file rw_file_perms;
+allow bluetoothd kernel:system module_request;
+allow bluetoothd self:capability { setuid net_bind_service net_admin };
+allow bluetoothd self:socket create_stream_socket_perms;
+
+# Data file accesses.
+allow bluetoothd bluetooth_data_file:dir create_dir_perms;
+allow bluetoothd bluetooth_data_file:notdevfile_class_set create_file_perms;
+
+# Allow connection from bluetooth subsytem and bluetoothdomain
+allow { bluetooth bluetoothdomain } bluetoothd:fd use;
+allow { bluetooth bluetoothdomain } bluetoothd:unix_stream_socket rw_stream_socket_perms;
+
+# Allow connection to bluettoth subsytem and to mediaserver
+allow bluetoothd { bluetooth mediaserver }:unix_stream_socket connectto;

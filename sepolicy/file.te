@@ -1,18 +1,15 @@
-# camera socket
-type camera_socket, file_type;
 # Modemfs
 type modem_file, fs_type;
-type modem_socket, file_type;
-type tad_socket, file_type;
-type tad_data_file, file_type, data_file_type;
+allow modem_file { rootfs labeledfs }:filesystem associate;
+
+type adm_socket, file_type;
 type at_socket, file_type;
-type simd_socket, file_type;
 type cn_socket, file_type;
 type cops_socket, file_type;
+type modem_socket, file_type;
 type pscc_socket, file_type;
-type simpbd_socket, file_type;
+type simd_socket, file_type;
 type sms_server_socket, file_type;
-allow modem_file rootfs:filesystem associate;
-allow modem_file labeledfs:filesystem associate;
-type cops_data_file, file_type, data_file_type;
-type adm_data_file, file_type, data_file_type;
+type tad_socket, file_type;
+
+type tad_data_file, file_type, data_file_type;

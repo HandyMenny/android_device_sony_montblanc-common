@@ -128,24 +128,17 @@ BOARD_SEPOLICY_UNION += \
        conn_init.te \
        copsd.te \
        device.te \
-       dhcp.te \
+       execmem.te \
+       gpsd.te \
        hci_attach.te \
-       hw_config.te \
        init.te \
-       init_shell.te \
        iw.te \
-       lbsd.te \
-       modemcatcher.te \
-       modem-supervisor.te \
-       msa.te \
+       modem-helpers.te \
        psccd.te \
        rild.te \
        simd.te \
-       simpbd.te \
        sms_server.te \
        suntrold.te \
-       surfaceflinger.te \
        tad.te \
-       updatemiscta.te \
        watchdogd.te \
        wpa.te
