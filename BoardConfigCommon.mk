@@ -124,6 +124,7 @@ BOARD_SEPOLICY_UNION += \
        admsrv.te \
        atd.te \
        bluetoothd.te \
+       bluetoothd_snoop.te \
        cn_server.te \
        conn_init.te \
        copsd.te \
