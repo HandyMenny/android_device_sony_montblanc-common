@@ -3,7 +3,7 @@ set +x
 _PATH="$PATH"
 export PATH=/sbin
 
-busybox cd /
+cd /
 busybox date >>boot.txt
 exec >>boot.txt 2>&1
 busybox rm /init
@@ -60,6 +60,11 @@ busybox date >>boot.txt
 # unpack the ramdisk image
 # -u should be used to replace the static busybox with dynamically linked one.
 busybox cpio -ui < ${load_image}
+
+# /sbin/busybox should be removed because it has few tools
+if [ "${load_image}" != "/sbin/ramdisk-recovery.cpio" ]; then
+	busybox rm /sbin/busybox
+fi
 
 export PATH="${_PATH}"
 exec /init
