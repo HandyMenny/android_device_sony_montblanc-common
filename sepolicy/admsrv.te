@@ -12,9 +12,21 @@ allow admsrv audio_device:dir search;
 allow admsrv { audio_device radio_device stm_device }:chr_file rw_file_perms;
 allow admsrv self:capability { chown dac_override fowner net_admin sys_nice };
 allow admsrv { shell_data_file system_data_file }:dir rw_dir_perms;
-allow admsrv { sysfs sysfs_wake_lock }:file rw_file_perms;
+allow admsrv { sysfs sysfs_devices_system_cpu sysfs_wake_lock }:file rw_file_perms;
 allow admsrv tmpfs:dir rw_dir_perms;
 allow admsrv audio_data_file:file create_file_perms;
 allow admsrv adm_socket:sock_file create_file_perms;
 type_transition admsrv { shell_data_file system_data_file }:file audio_data_file;
 type_transition admsrv shell_data_file:sock_file adm_socket;
+
+userdebug_or_eng(`
+  # admsrv needs additional permissions for debugging
+  r_dir_file(admsrv, debugfs)
+  allow admsrv fuse:dir create_dir_perms;
+  allow admsrv fuse:file create_file_perms;
+  allow debuggerd gpu_device:chr_file r_file_perms;
+  # Unfortunately we can't authorize admsrv to do the following things
+  dontaudit admsrv kmem_device:chr_file r_file_perms;
+  dontaudit admsrv self:capability sys_rawio;
+  permissive admsrv;
+')
