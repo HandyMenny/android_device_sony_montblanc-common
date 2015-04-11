@@ -47,9 +47,22 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(r
 	@echo -e ${CL_CYN}"Made boot image: $@"${CL_RST}
 
 INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) \
-	$(recovery_ramdisk) \
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(recovery_ramdisk) \
 	$(recovery_kernel)
 	@echo ----- Making recovery image ------
-	$(hide) $(MKBOOTIMG) -o $@ --kernel $(PRODUCT_OUT)/kernel --ramdisk $(PRODUCT_OUT)/ramdisk-recovery.img --cmdline '$(cat $(LOCAL_PATH)/../$(TARGET_DEVICE)/config/cmdline)' --base $(BOARD_KERNEL_BASE) $(BOARD_MKBOOTIMG_ARGS)
-	@echo ----- Made recovery image -------- $@
+	$(hide) python $(MKELF) -o $(PRODUCT_OUT)/recovery.elf $(PRODUCT_OUT)/kernel@$(BOARD_KERNEL_ADDRESS) $(PRODUCT_OUT)/ramdisk-recovery.img@$(BOARD_RAMDISK_ADDRESS),ramdisk $(LOCAL_PATH)/../$(TARGET_DEVICE)/config/cmdline@cmdline
+
+	$(hide) dd if=$(PRODUCT_OUT)/recovery.elf of=$(PRODUCT_OUT)/recovery.elf.bak bs=1 count=44
+	$(hide) printf "\x04" >$(PRODUCT_OUT)/_04
+	$(hide) cat $(PRODUCT_OUT)/recovery.elf.bak $(PRODUCT_OUT)/_04 > $(PRODUCT_OUT)/recovery.elf.bak2
+	$(hide) rm -rf $(PRODUCT_OUT)/recovery.elf.bak
+	$(hide) dd if=$(PRODUCT_OUT)/recovery.elf of=$(PRODUCT_OUT)/recovery.elf.bak bs=1 skip=45 count=99
+	$(hide) cat $(PRODUCT_OUT)/recovery.elf.bak2 $(PRODUCT_OUT)/recovery.elf.bak > $(PRODUCT_OUT)/recovery.elf.bak3
+	$(hide) rm -rf $(PRODUCT_OUT)/recovery.elf.bak $(PRODUCT_OUT)/recovery.elf.bak2
+	$(hide) cat $(PRODUCT_OUT)/recovery.elf.bak3 $(LOCAL_PATH)/../$(TARGET_DEVICE)/prebuilt/elf.3 > $(PRODUCT_OUT)/recovery.elf.bak
+	$(hide) rm -rf $(PRODUCT_OUT)/recovery.elf.bak3
+	$(hide) dd if=$(PRODUCT_OUT)/recovery.elf of=$(PRODUCT_OUT)/recovery.elf.bak2 bs=16 skip=79
+	$(hide) cat $(PRODUCT_OUT)/recovery.elf.bak $(PRODUCT_OUT)/recovery.elf.bak2 > $(PRODUCT_OUT)/recovery.elf.bak3
+	$(hide) rm -rf $(PRODUCT_OUT)/recovery.elf.bak $(PRODUCT_OUT)/recovery.elf.bak2 $(PRODUCT_OUT)/recovery.elf $(PRODUCT_OUT)/_04
+	$(hide) mv $(PRODUCT_OUT)/recovery.elf.bak3 $(PRODUCT_OUT)/recovery.img
+	@echo -e ${CL_CYN}"Made recovery image: $@"${CL_RST}
