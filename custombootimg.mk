@@ -8,9 +8,10 @@ MKELF := $(LOCAL_PATH)/tools/mkelf.py
 INITSH := $(LOCAL_PATH)/recovery/init.sh
 BOOTREC_DEVICE := device/sony/$(TARGET_DEVICE)/config/bootrec-device
 BOOTREC_LED := device/sony/$(TARGET_DEVICE)/config/bootrec-led
+BUSYBOX := $(LOCAL_PATH)/recovery/busybox
 
 INSTALLED_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/boot.img
-$(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(recovery_uncompressed_ramdisk) $(INSTALLED_RAMDISK_TARGET) $(INITSH) $(BOOTREC_DEVICE) $(BOOTREC_LED) $(PRODUCT_OUT)/utilities/busybox $(INTERNAL_BOOTIMAGE_FILES) $(PRODUCT_OUT)/utilities/extract_elf_ramdisk
+$(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(recovery_uncompressed_ramdisk) $(INSTALLED_RAMDISK_TARGET) $(INITSH) $(BOOTREC_DEVICE) $(BOOTREC_LED) $(INTERNAL_BOOTIMAGE_FILES) $(PRODUCT_OUT)/utilities/extract_elf_ramdisk
 	$(call pretty,"Boot image: $@")
 
 	$(hide) rm -rf $(PRODUCT_OUT)/combinedroot
@@ -18,8 +19,7 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(r
 
 	$(hide) mv $(PRODUCT_OUT)/root/logo.rle $(PRODUCT_OUT)/combinedroot/logo.rle
 	$(hide) cp $(uncompressed_ramdisk) $(PRODUCT_OUT)/combinedroot/sbin/
-	$(hide) cp $(recovery_uncompressed_ramdisk) $(PRODUCT_OUT)/combinedroot/sbin/
-	$(hide) cp $(PRODUCT_OUT)/utilities/busybox $(PRODUCT_OUT)/combinedroot/sbin/
+	$(hide) cp  $(BUSYBOX) $(PRODUCT_OUT)/combinedroot/sbin/
 	$(hide) cp  $(PRODUCT_OUT)/utilities/extract_elf_ramdisk $(PRODUCT_OUT)/combinedroot/sbin/
 
 	$(hide) cp $(INITSH) $(PRODUCT_OUT)/combinedroot/sbin/
