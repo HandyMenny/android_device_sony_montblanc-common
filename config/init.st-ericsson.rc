@@ -7,7 +7,7 @@ on early-init
     chmod 0644 /proc/cmdline
 
 on init
-    # setup the global environment
+    # Setup the global environment
     export LD_LIBRARY_PATH /vendor/lib:/system/lib:/system/lib/ste_omxcomponents
     export OMX_STE_ENS_COMPONENTS_DIR /system/lib/ste_omxcomponents/
     export OMX_BELLAGIO_LOADER_REGISTRY /system/etc/omxloaders
@@ -36,7 +36,7 @@ on init
     # ...but make it a symlink so that sysmon may use it also
     symlink /dev/socket /tmp
 
-    # make files in /sys/ non-writable for OTHERS
+    # Make files in /sys/ non-writable for OTHERS
     chmod 220 /sys/ab8500_chargalg/chargalg
     chown system system /sys/ab8500_chargalg/chargalg
     chmod 664 /sys/devices/sensor00/fn54/fifoindexhi
@@ -62,9 +62,10 @@ on init
     chmod 664 /sys/devices/sensor00/enabled
     chmod 664 /sys/devices/sensor00/bsr
 
-    # chown for sim detect
+    # Chown for sim detect
     chown root radio /sys/class/sim_card/sim_status
-    #permissions for rfkill
+
+    # Permissions for rfkill
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
     chmod 664 /sys/class/rfkill/rfkill1/state
 
@@ -72,8 +73,6 @@ on fs
     # If you change anything here, make sure to update
     # <root>/vendor/semc/system/bootstrap/masterreset/fstab.riogrande
     # accordingly.
-
-    setprop ro.crypto.state unsupported
 
     write /sys/block/zram0/comp_algorithm lz4
 
@@ -83,6 +82,7 @@ on fs
     # SEMC: Start the TrimArea Daemon and early TA-users
     class_start trimarea
     exec /system/bin/wait4tad
+
     # Put all other TA-users after wait4tad
     exec /system/bin/startupflag bootstarted
     exec /system/bin/rfhal_export
@@ -148,7 +148,7 @@ on post-fs
     write /sys/devices/platform/musb-ux500.0/musb-hdrc/gadget/lun1/nofua 1
 
 on post-fs-data
-    # create basic filesystem structure
+    # Create basic filesystem structure
     mkdir /data/misc/hcid 0770 bluetooth bluetooth
     mkdir /data/misc/psdata
     mkdir /data/misc/telephony_log_levels
@@ -182,7 +182,7 @@ on early-boot
     # STE: Launch core services in case charging mode is entered
     start watchdog-kicker
 
-    # init Phonet and shrm net device required for Phonet communication with Modem
+    # Init phonet and shrm net device required for Phonet communication with Modem
     ifup shrm0
     ifup upnlink0
 
@@ -266,6 +266,7 @@ on boot
     chown system system /sys/bus/i2c/devices/2-0053/flash_duration
     chown system system /sys/bus/i2c/devices/2-0053/flash_synchronization
     chown system system /sys/bus/i2c/devices/2-0053/status
+
     # Permissions for LM3560 flash LED
     chown system system /sys/bus/i2c/devices/2-0053/privacy_enable
     chown system system /sys/bus/i2c/devices/2-0053/privacy_current
@@ -342,19 +343,19 @@ on boot
     # STE: Enable wide-band speech for Bluetooth
     setprop bt.hfp.wideband 1
 
-#STE: Start the Modem Storage Agent (MSA) service
+# STE: Start the Modem Storage Agent (MSA) service
 service modem /system/bin/sh /system/etc/ste_modem.sh
     seclabel u:r:conn_init:s0
     class modem-u8500
     user radio
     group radio
 
-#STE: Modem-supervisor
+# STE: Modem-supervisor
 service modem-supervisor /system/bin/modem-supervisor -r -f /dev/dbx500_mloader_fw -m /dev/block/mmcblk0p5 -i /sys/devices/platform/ab8500-i2c.0/chip_id -c monitor -t 3
     class modem-u8500
     user root
 
-#STE: Creating Modem Security daemon
+# STE: Creating Modem Security daemon
 service copsd /system/bin/copsdaemon
     class modem-core
     user root
@@ -535,7 +536,7 @@ on property:wlan.driver.status=ok
     start initial_regdom
     write /sys/class/rfkill/rfkill0/state 1
 
-# power down wifi interface
+# Power down wifi interface
 on property:wlan.driver.status=unloaded
     write /sys/class/rfkill/rfkill0/state 0
 
@@ -549,7 +550,7 @@ on property:init.svc.dhcpcd_wlan0=stopped
 on property:dhcp.wlan0.result=ok
     exec /system/bin/iw phy phy0 wowlan enable any
 
-# delete tethered interface and bring down wlan0
+# Delete tethered interface and bring down wlan0
 on property:init.svc.hostapd=stopped
     exec /system/bin/iw dev mon.wlan0 del
     exec /system/bin/netcfg wlan0 down
