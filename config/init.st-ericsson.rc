@@ -367,7 +367,6 @@ service init_ste-cg2900 /system/bin/hciattach -a 23 -n -s 115200 /dev/ttyAMA0 cg
 
 # Install Wireless drivers
 service init_ste-cw1200 /system/bin/install_wlan.sh
-    seclabel u:r:conn_init:s0
     disabled
     oneshot
 
