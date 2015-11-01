@@ -5,9 +5,9 @@ bootanim
 cn_server
 conn_init
 copsd
-gpsd
 init
 init_shell
+lbsd
 modem-help
 psccd
 rild

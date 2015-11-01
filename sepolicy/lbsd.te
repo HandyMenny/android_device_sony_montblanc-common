@@ -1,0 +1,28 @@
+# lbsd - GPS daemon (based on gpsd.te)
+type lbsd, domain;
+type lbsd_exec, exec_type, file_type;
+
+init_daemon_domain(lbsd)
+net_domain(lbsd)
+allow lbsd self:capability { setuid sys_admin net_admin dac_override };
+allow lbsd self:{ netlink_socket socket} create_socket_perms;
+allow lbsd gps_device:chr_file rw_file_perms;
+allow lbsd device:dir ra_dir_perms;
+allow lbsd gps_socket:sock_file create_file_perms;
+type_transition lbsd device:sock_file gps_socket;
+allow lbsd sysfs_wake_lock:file rw_file_perms;
+file_type_auto_trans(lbsd, system_data_file, gps_data_file)
+unix_socket_connect(lbsd, cn, cn_server)
+unix_socket_connect(lbsd, simd, simd)
+unix_socket_connect(lbsd, sms_server, sms_server)
+
+# Allow system to talk to lbsd via gps_socket
+unix_socket_connect(system_server, gps, lbsd)
+
+# Execute the shell or system commands.
+allow lbsd shell_exec:file rx_file_perms;
+allow lbsd system_file:file rx_file_perms;
+
+
+# Why lbsd want to write to /system ?
+dontaudit lbsd system_file:file write;

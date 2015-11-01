@@ -152,10 +152,10 @@ BOARD_SEPOLICY_UNION += \
     copsd.te \
     device.te \
     execmem.te \
-    gpsd.te \
     hci_attach.te \
     init.te \
     iw.te \
+    lbsd.te \
     modem-helpers.te \
     psccd.te \
     rild.te \
