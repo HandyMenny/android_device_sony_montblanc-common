@@ -182,6 +182,8 @@ on early-boot
     # STE: Launch core services in case charging mode is entered
     start watchdog-kicker
 
+    start ste_setup
+
     # Init phonet and shrm net device required for Phonet communication with Modem
     ifup shrm0
     ifup upnlink0
@@ -305,8 +307,6 @@ on boot
 
     start init_ste-cg2900
 
-    start init_ste-cw1200
-
     # Set timeout value for rmnet stats.
     write /sys/devices/virtual/net/rmnet0/timeout_suspend 5000000
 
@@ -371,11 +371,6 @@ service admsrv /system/bin/admsrv
 service init_ste-cg2900 /system/bin/hciattach -a 23 -n -s 115200 /dev/ttyAMA0 cg2900 115200 flow
     user bluetooth
     group bluetooth net_bt_admin system net_bt_stack
-    disabled
-    oneshot
-
-# Install Wireless drivers
-service init_ste-cw1200 /system/bin/install_wlan.sh
     disabled
     oneshot
 
@@ -510,6 +505,11 @@ service modemcatcher /system/bin/modemcatcher -f
 service hw_config /system/bin/sh /system/etc/hw_config.sh
     class main
     user root
+    oneshot
+
+# Ste setup
+service ste_setup /system/bin/ste_setup.sh
+    disabled
     oneshot
 
 # Start suntrold

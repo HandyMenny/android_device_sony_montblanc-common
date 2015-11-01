@@ -3,15 +3,14 @@ type conn_init, domain;
 type conn_init_exec, exec_type, file_type;
 init_daemon_domain(conn_init)
 
-allow conn_init conn_init_exec:file execute_no_trans;
-allow conn_init devpts:chr_file rw_file_perms;
-allow conn_init radio_device:chr_file rw_file_perms;
-allow conn_init self:capability { net_admin net_raw sys_module };
+allow conn_init { conn_init_exec system_file }:file execute_no_trans;
+allow conn_init { devpts radio_device }:chr_file rw_file_perms;
+allow conn_init self:capability { fowner chown fsetid dac_override net_admin net_raw sys_module };
 allow conn_init self:udp_socket create_socket_perms;
 allow conn_init shell_exec:file { read entrypoint };
 allow conn_init sysfs_wake_lock:file w_file_perms;
 allow conn_init tad_data_file:file r_file_perms;
 allow conn_init modem_file:dir rw_dir_perms;
-allow conn_init modem_file:file create_file_perms;
-allow conn_init system_file:file execute_no_trans;
-allow conn_init radio_data_file:dir r_dir_perms;
+allow conn_init { dhcp_data_file wifi_data_file }:dir w_dir_perms;
+allow conn_init { dhcp_data_file modem_file wifi_data_file  }:file create_file_perms;
+file_type_auto_trans(conn_init, system_data_file, radio_data_file)
