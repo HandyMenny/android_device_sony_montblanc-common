@@ -63,7 +63,7 @@
 /system/bin/stercd	u:object_r:psccd_exec:s0
 /system/bin/suntrold	u:object_r:suntrold_exec:s0
 /system/etc/ste_modem.sh	u:object_r:conn_init_exec:s0
-/system/etc/ril_config	u:object_r:radio_data_file:s0
+/system/bin/ste_setup.sh	u:object_r:conn_init_exec:s0
 /system/xbin/watchdog-kicker	u:object_r:watchdogd_exec:s0
 
 # SEMC: TrimArea Daemon and early TA-users

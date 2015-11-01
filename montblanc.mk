@@ -33,8 +33,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/config/asound.conf:system/etc/asound.conf \
     $(COMMON_PATH)/config/hostapd.conf:system/etc/wifi/hostapd.conf \
-    $(COMMON_PATH)/config/01stesetup:system/etc/init.d/01stesetup \
-    $(COMMON_PATH)/config/10wireless:system/etc/init.d/10wireless \
     $(COMMON_PATH)/config/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(COMMON_PATH)/config/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
@@ -54,7 +52,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/config/omxloaders:system/etc/omxloaders \
     $(COMMON_PATH)/config/ril_config:system/etc/ril_config \
-    $(COMMON_PATH)/config/install_wlan.sh:system/bin/install_wlan.sh \
+    $(COMMON_PATH)/config/ste_setup.sh:system/bin/ste_setup.sh \
     $(COMMON_PATH)/config/ste_modem.sh:system/etc/ste_modem.sh \
     $(COMMON_PATH)/config/gps.conf:system/etc/gps.conf \
     $(COMMON_PATH)/config/cacert.txt:system/etc/suplcert/cacert.txt
