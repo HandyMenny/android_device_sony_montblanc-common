@@ -50,7 +50,7 @@
 /system/bin/hciattach	u:object_r:hci_attach_exec:s0
 /system/bin/install_wlan.sh	u:object_r:conn_init_exec:s0
 /system/bin/iw		u:object_r:iw_exec:s0
-/system/bin/lbsd	u:object_r:gpsd_exec:s0
+/system/bin/lbsd	u:object_r:lbsd_exec:s0
 /system/bin/modemcatcher	u:object_r:modem-help_exec:s0
 /system/bin/modem-supervisor	u:object_r:modem-help_exec:s0
 /system/bin/msa		u:object_r:conn_init_exec:s0
